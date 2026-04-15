@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     app_env: str = "development"
     api_host: str = "0.0.0.0"
     api_port: int = 8000
-    frontend_origin: str = "http://127.0.0.1:5500"
+    frontend_origin: str = "https://cashback-app-nine.vercel.app"
     database_url: str = "postgresql+psycopg://postgres:postgres@localhost:5433/cashback"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
