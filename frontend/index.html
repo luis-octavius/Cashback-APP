@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nology Cashback</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape--one"></div>
+    <div class="bg-shape bg-shape--two"></div>
+
+    <main class="container">
+      <header class="hero">
+        <p class="eyebrow">Simulador oficial</p>
+        <h1>Cashback Nology</h1>
+        <p class="subtitle">Calcule o cashback e veja o histórico registrado para o seu IP.</p>
+      </header>
+
+      <section class="card" aria-labelledby="calc-title">
+        <h2 id="calc-title">Nova consulta</h2>
+        <form id="cashback-form" class="form-grid">
+          <label>
+            Tipo de cliente
+            <select id="customer_type" required>
+              <option value="regular">Regular</option>
+              <option value="vip">VIP</option>
+            </select>
+          </label>
+
+          <label>
+            Valor da compra (R$)
+            <input id="purchase_amount" type="number" min="0.01" step="0.01" required />
+          </label>
+
+          <label>
+            Cupom de desconto (%)
+            <input id="discount_percent" type="number" min="0" max="100" step="0.01" value="0" required />
+          </label>
+
+          <button type="submit">Calcular cashback</button>
+        </form>
+
+        <div id="result" class="result" aria-live="polite"></div>
+        <div id="error" class="error" aria-live="assertive"></div>
+      </section>
+
+      <section class="card" aria-labelledby="history-title">
+        <div class="history-head">
+          <h2 id="history-title">Histórico deste IP</h2>
+          <button id="refresh-history" class="secondary" type="button">Atualizar</button>
+        </div>
+        <p id="history-ip" class="ip-note"></p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Cliente</th>
+                <th>Compra</th>
+                <th>Desconto</th>
+                <th>Valor final</th>
+                <th>Cashback</th>
+              </tr>
+            </thead>
+            <tbody id="history-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
