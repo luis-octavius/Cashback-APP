@@ -1,14 +1,13 @@
 # Nology Cashback
 
-Aplicacao fullstack para o desafio de cashback com:
+Aplicação fullstack para o desafio de cashback com:
 - API em FastAPI (Python)
-- Persistencia em PostgreSQL
+- Persistência em PostgreSQL
 - Frontend estatico em HTML/CSS/JS puro
 
 ## Arquitetura
 - Backend: `backend/app`
 - Frontend: `frontend`
-- Respostas das questoes 2-4: `docs/respostas_desafio.md`
 
 ## Regras de cashback implementadas
 1. Cashback base: 5% sobre o valor final da compra (apos desconto).
@@ -69,26 +68,14 @@ source .venv/bin/activate
 pytest -q
 ```
 
-## Deploy sugerido
-- Backend + PostgreSQL: Railway
-- Frontend estatico: Vercel
+## Aplicação em produção
+- Frontend publicado em: https://cashback-app-nine.vercel.app/
+- A API de producao é consumida diretamente pelo frontend.
 
-### Variaveis de ambiente no backend (Railway)
-- `DATABASE_URL`
-- `FRONTEND_ORIGIN` (URL final do frontend)
+### Observação sobre o frontend
+- O frontend usa a URL configurada em `frontend/config.js` para chamar a API.
+- Em desenvolvimento local, ele continua apontando para o backend local quando nao houver configuracao explicita.
 
-### Passos de deploy
-1. Suba o backend no Railway apontando para `backend/` como raiz do projeto.
-2. Configure no Railway as variaveis `DATABASE_URL` e `FRONTEND_ORIGIN` com a URL publica do Vercel.
-3. Use o start command do `backend/Procfile` ou equivalente: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
-4. Publique o frontend no Vercel a partir da pasta `frontend/`.
-5. Atualize `frontend/config.js` com a URL publica da API do Railway antes do deploy do frontend.
-6. Teste no navegador os endpoints `POST /api/v1/cashback/calculate` e `GET /api/v1/cashback/history`.
-
-### Observacao sobre o frontend
-- O frontend tenta usar `frontend/config.js` primeiro.
-- Se a URL nao estiver configurada, ele usa automaticamente o backend local em desenvolvimento.
-
-## Observacoes
+## Observações
 - Para facilitar desenvolvimento local, o app cria tabelas automaticamente no startup.
-- Em producao, prefira usar apenas migracoes Alembic.
+- Em produção, prefira usar apenas migracoes Alembic.
